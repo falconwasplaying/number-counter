@@ -1,1 +1,5 @@
-It is a simple and humble app because it's my first, don't expect much because it literally does what the description says
+# Number Counter
+A simple Android app that counts numbers and saves them even after closing the app.
+
+## Screenshot
+![App Screenshot](<img width="1080" height="2400" alt="image" src="https://github.com/user-attachments/assets/c1c2ddad-972b-4cc6-9c89-abd5406ed139" />)
