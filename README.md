@@ -6,6 +6,13 @@ Download the latest version here:
 A simple Android app that counts numbers and saves them even after closing the app. </br>
 It's the first app I've ever made and plan to add more to it in the future.
 
+[![Kotlin](https://img.shields.io/badge/Language-Kotlin-blueviolet)]()
+&nbsp;
+[![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-green)](https://developer.android.com/compose)
+&nbsp;
+[![License: MIT](https://img.shields.io/badge/License:-MIT-darkgreen.svg)](https://opensource.org/licenses/MIT)
+
+
 ## ☁ Screenshots
 Started at 0                                   | Counted to 8
 :---------------------------------------------:|:----------------------------------:
