@@ -1,19 +1,29 @@
 package com.falcon.counter
-
-import android.os.Build
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,109 +32,137 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.falcon.counter.ui.theme.CounterTheme
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
-// create datastore
+// create datastore for settings
 val ComponentActivity.dataStore by preferencesDataStore(name = "settings")
 
 class MainActivity : ComponentActivity() {
 
-    private val counterKey = intPreferencesKey("counter_value")
+    private val counterKey = intPreferencesKey("counter_value") // counter value as counterKey
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        enableEdgeToEdge()
 
         setContent {
 
-            val bg = MaterialTheme.colorScheme.surface
+            var counter by remember { mutableIntStateOf(0) } // load initial value
+            var showSplash: Boolean by remember { mutableStateOf(true) }
+            val darkMode = isSystemInDarkTheme()
 
-            window.statusBarColor = bg.toArgb()
-            window.navigationBarColor = bg.toArgb()
+            Box(modifier = Modifier.fillMaxSize()) {
+                CounterTheme(darkTheme = darkMode) {
 
-            CounterTheme {
+                    val view = LocalView.current
 
-                val darkMode = isSystemInDarkTheme()
+                    // using side effect for navbar and status bar to be consistent with theme
+                    SideEffect {
+                        val window = (view.context as Activity).window
 
-                val controller = WindowInsetsControllerCompat(window, window.decorView)
+                        // status bar
+                        WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars =
+                            !darkMode
 
-                SideEffect {
-                    // background color
-                    window.statusBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
-                    window.navigationBarColor = androidx.compose.ui.graphics.Color.Transparent.toArgb()
+                        // navbar
+                        WindowCompat.getInsetsController(
+                            window,
+                            view
+                        ).isAppearanceLightNavigationBars = !darkMode
+                    }
 
-                    // ICON COLORS
-                    controller.isAppearanceLightStatusBars = !darkMode
-                    controller.isAppearanceLightNavigationBars = !darkMode
+                    val scope = rememberCoroutineScope()
 
-                    // make bars transparent
-                    window.setDecorFitsSystemWindows(false)
-                }
+                    // how it works, ig
+                    CounterScreen(
 
+                        counter = counter,
 
-                val scope = rememberCoroutineScope()
-
-                // load initial value
-                var counter by remember { mutableIntStateOf(0) }
-
-                LaunchedEffect(Unit) {
-                    counter = dataStore.data.first()[counterKey] ?: 0
-                }
-
-
-                // UI
-                CounterScreen(
-
-                    counter = counter,
-                    onIncrement = {
+                        // increase
+                        onIncrease = {
                             counter++
                             scope.launch {
                                 dataStore.edit { prefs ->
                                     prefs[counterKey] = counter
                                 }
                             }
-                    },
-                    onReset = {
-                        counter = 0
+                        },
+                        // decrease
+                        onDecrease = {
+                            counter--
+                            scope.launch {
+                                dataStore.edit { prefs ->
+                                    prefs[counterKey] = counter
+                                }
+                            }
+                        },
+                        // reset
+                        onReset = {
+                            counter = 0
                             scope.launch {
                                 dataStore.edit { prefs ->
                                     prefs[counterKey] = 0
                                 }
                             }
                         }
-                )
+                    )
+
+                    AnimatedVisibility(
+                        visible = showSplash,
+                        enter = EnterTransition.None,
+                        exit = fadeOut(animationSpec = tween(durationMillis = 500))
+                    ) {
+                        SplashScreenContent()
+                    }
+                }
+            }
+            LaunchedEffect(Unit) {
+                counter = dataStore.data.first()[counterKey] ?: 0
+                delay(600.milliseconds)
+                showSplash = false
             }
         }
     }
 }
 
+// ui stuff
 @Composable
 fun CounterScreen(
     counter: Int,
-    onIncrement: () -> Unit,
+    onIncrease: () -> Unit,
+    onDecrease: () -> Unit,
     onReset: () -> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .consumeWindowInsets(WindowInsets(0,0,0,0)),
+            .safeDrawingPadding(),
 
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -132,20 +170,98 @@ fun CounterScreen(
 
         Text(
             text = "$counter",
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
+            fontSize = 64.sp
         )
-
 
         Spacer(Modifier.height(20.dp))
 
-        Button(onClick = onIncrement) {
-            Text("Add +1")
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Button(onClick = onIncrease) {
+                Text(
+                    text = "+",
+                    fontSize = 24.sp
+                )
+            }
+
+            Spacer(Modifier.width(10.dp))
+
+            Button(onClick = onDecrease) {
+                Text(
+                    text = "-",
+                    fontSize = 24.sp
+                )
+            }
         }
 
         Spacer(Modifier.height(10.dp))
 
         Button(onClick = onReset) {
-            Text("Reset")
+            Text(
+                text = "Reset",
+                fontSize = 20.sp
+            )
         }
+    }
+}
+
+val TimesNewRoman = FontFamily(
+    Font(R.font.times_new_roman_mt_regular, FontWeight.Normal)
+)
+
+// MY custom splash screen
+@Composable
+fun SplashScreenContent() {
+    val backgroundColor = MaterialTheme.colorScheme.background
+    val contentColor = MaterialTheme.colorScheme.onBackground
+
+    BoxWithConstraints(modifier = Modifier.fillMaxSize().background(backgroundColor)) {
+        val screenWidth = maxWidth
+        val screenHeight = maxHeight
+
+        // 1. Draw your solid diagonal path line
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            drawLine(
+                color = contentColor,
+                start = androidx.compose.ui.geometry.Offset(0f, 0f),
+                end = androidx.compose.ui.geometry.Offset(size.width, size.height),
+                strokeWidth = 4f
+            )
+        }
+
+        // Shared line alignment multipliers
+        val linePositionZero = 0.42f
+        val linePositionOne = 0.58f
+
+        // 2. THE NUMBER 0 (Shifted Down-Left off the line)
+        Text(
+            text = "0",
+            color = contentColor,
+            fontFamily = TimesNewRoman,
+            fontSize = 90.sp, // Made it big like your sketch
+            modifier = Modifier
+                .offset(
+                    x = (screenWidth * linePositionZero) - 30.dp, // Shifting Left
+                    y = (screenHeight * linePositionZero) + 70.dp  // Shifting Down
+                )
+                .wrapContentSize(Alignment.Center)
+        )
+
+        // 3. THE NUMBER 1 (Shifted Up-Right off the line)
+        Text(
+            text = "1",
+            color = contentColor,
+            fontFamily = TimesNewRoman,
+            fontSize = 90.sp,
+            modifier = Modifier
+                .offset(
+                    x = (screenWidth * linePositionOne) + 0.dp, // Shifting Right
+                    y = (screenHeight * linePositionOne) - 120.dp  // Shifting Up
+                )
+                .wrapContentSize(Alignment.Center)
+        )
     }
 }
