@@ -63,4 +63,5 @@ dependencies {
     implementation(libs.datastore.preferences)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.google.material)
+    implementation(project(":core"))
 }

@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":app")
+include(":core")
+
 pluginManagement {
     repositories {
         google {
@@ -25,5 +28,3 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Number Counter"
-include(":app")
- 

@@ -46,13 +46,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
-import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.falcon.core.decrease
+import com.falcon.core.increase
+import com.falcon.core.reset
 import com.falcon.counter.ui.theme.CounterTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
 
 // create datastore for settings
@@ -72,7 +73,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
-            var counter by remember { mutableIntStateOf(0) } // load initial value
+            var counter by remember { mutableIntStateOf(0) }
+            val scope = rememberCoroutineScope()
             var showSplash: Boolean by remember { mutableStateOf(true) }
             val darkMode = isSystemInDarkTheme()
 
@@ -96,39 +98,17 @@ class MainActivity : ComponentActivity() {
                         ).isAppearanceLightNavigationBars = !darkMode
                     }
 
-                    val scope = rememberCoroutineScope()
-
                     // how it works, ig
                     CounterScreen(
-
                         counter = counter,
-
-                        // increase
                         onIncrease = {
-                            counter++
-                            scope.launch {
-                                dataStore.edit { prefs ->
-                                    prefs[counterKey] = counter
-                                }
-                            }
+                            counter = increase(counter, scope, dataStore)
                         },
-                        // decrease
                         onDecrease = {
-                            counter--
-                            scope.launch {
-                                dataStore.edit { prefs ->
-                                    prefs[counterKey] = counter
-                                }
-                            }
+                            counter = decrease(counter, scope, dataStore)
                         },
-                        // reset
                         onReset = {
-                            counter = 0
-                            scope.launch {
-                                dataStore.edit { prefs ->
-                                    prefs[counterKey] = 0
-                                }
-                            }
+                            counter = reset(scope, dataStore)
                         }
                     )
 
@@ -243,11 +223,11 @@ fun SplashScreenContent() {
             fontFamily = TimesNewRoman,
             fontSize = 90.sp, // Made it big like your sketch
             modifier = Modifier
+                .wrapContentSize(Alignment.Center)
                 .offset(
                     x = (screenWidth * linePositionZero) - 30.dp, // Shifting Left
                     y = (screenHeight * linePositionZero) + 70.dp  // Shifting Down
                 )
-                .wrapContentSize(Alignment.Center)
         )
 
         // 3. THE NUMBER 1 (Shifted Up-Right off the line)
@@ -257,11 +237,11 @@ fun SplashScreenContent() {
             fontFamily = TimesNewRoman,
             fontSize = 90.sp,
             modifier = Modifier
+                .wrapContentSize(Alignment.Center)
                 .offset(
                     x = (screenWidth * linePositionOne) + 0.dp, // Shifting Right
                     y = (screenHeight * linePositionOne) - 120.dp  // Shifting Up
                 )
-                .wrapContentSize(Alignment.Center)
         )
     }
 }
