@@ -1,2 +1,0 @@
-com.falcon.splashscreen
-font times_new_roman_mt_regular

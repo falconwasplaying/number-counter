@@ -1,9 +1,0 @@
-com.falcon.splashscreen-pngs-0 C:\Users\altam\StudioProjects\number-counter\splashscreen\build\generated\res\pngs\debug
-com.falcon.splashscreen-updated_navigation_xml-1 C:\Users\altam\StudioProjects\number-counter\splashscreen\build\generated\updated_navigation_xml\debug
-com.falcon.splashscreen-mergeDebugResources-2 C:\Users\altam\StudioProjects\number-counter\splashscreen\build\intermediates\incremental\debug\mergeDebugResources\merged.dir
-com.falcon.splashscreen-mergeDebugResources-3 C:\Users\altam\StudioProjects\number-counter\splashscreen\build\intermediates\incremental\debug\mergeDebugResources\stripped.dir
-com.falcon.splashscreen-debug-4 C:\Users\altam\StudioProjects\number-counter\splashscreen\build\intermediates\merged_res\debug\mergeDebugResources
-com.falcon.splashscreen-debug-5 C:\Users\altam\StudioProjects\number-counter\splashscreen\build\intermediates\packaged_res\debug\packageDebugResources
-com.falcon.splashscreen-debug-6 C:\Users\altam\StudioProjects\number-counter\splashscreen\src\debug\res
-com.falcon.splashscreen-main-7 C:\Users\altam\StudioProjects\number-counter\splashscreen\src\main\res
-gradleHome-0 C:\Users\altam\.gradle
