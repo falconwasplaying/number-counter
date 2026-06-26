@@ -2,6 +2,7 @@
 
 include(":app")
 include(":core")
+include(":splashscreen")
 
 pluginManagement {
     repositories {

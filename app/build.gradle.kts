@@ -64,4 +64,5 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.google.material)
     implementation(project(":core"))
+    implementation(project(":splashscreen"))
 }
