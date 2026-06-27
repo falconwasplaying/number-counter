@@ -1,17 +1,19 @@
-# 𓆰 Number Counter
+<div align="center">
 
-Download the latest version here:
-[Number Counter v1.0](https://github.com/falconwasplaying/number-counter/releases/download/Release/number-counter.v1.0.apk)
+# Number Counter
+
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=flat&logo=kotlin&logoColor=white)
+&nbsp;
+![Android Studio](https://img.shields.io/badge/Android%20Studio-%233DDC84.svg?style=flat&logo=android-studio&logoColor=white)
+&nbsp;
+![Target SDK](https://img.shields.io/badge/Target%20SDK-37-%233DDC84?style=flat&labelColor=%2324292e&logo=android&logoColor=white)
+
+Click here to get the latest version: &nbsp; [![Latest Release](https://img.shields.io/badge/Latest%20Release-v1.1.0-%237F52FF?style=flat&labelColor=%2324292e)](https://github.com/falconwasplaying/number-counter/releases/download/v1.1.0/number-counter.v1.1.0.apk)
   
-A simple Android app that counts numbers and saves them even after closing the app. </br>
-It's the first app I've ever made and plan to add more to it in the future.
+A simple Android app that counts for you. </br>
+It's my first native android app.
 
-[![Kotlin](https://img.shields.io/badge/Language-Kotlin-blueviolet)]()
-&nbsp;
-[![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-green)](https://developer.android.com/compose)
-&nbsp;
-[![License: MIT](https://img.shields.io/badge/License:-MIT-darkgreen.svg)](https://opensource.org/licenses/MIT)
-
+</div>
 
 ## ☁ Screenshots
 Started at 0                                   | Counted to 8
