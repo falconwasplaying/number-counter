@@ -1,21 +1,25 @@
-MIT License
+TERMS OF USE & PRIVACY LICENSE
 
-Copyright (c) 2025 Alfahad Sheikh
+Copyright (c) 2026 Alfahad Sheikh. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+By accessing, viewing, using or downloading the source code or software ("Software") 
+associated with this repository, you agree to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. GRANT OF LICENSE & PERMITTED USE
+  You are granted a non-exclusive, non-transferable, royalty-free license to view, read, download, and execute the Software strictly for personal, non-commercial, educational, and private use.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. RESTRICTIONS AND PROHIBITIONS
+* Commercial Use Prohibited: You may not sell, rent, lease, redistribute, or otherwise commercially exploit the Software, its source code, or binaries, in whole or in part, without the explicit prior written permission of the Copyright Holder.
+* Forking & Modification Prohibited: You may not fork this repository, create derivative works, or publicly redistribute modified versions of this source code without the explicit prior written permission of the Copyright Holder.
+
+3. DISCLAIMER OF LIABILITY (AS-IS)
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS 
+  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE. THE ENTIRE RISK AS TO THE QUALITY, PERFORMANCE, AND 
+USE OF THE SOFTWARE IS WITH YOU. THE COPYRIGHT HOLDER ACCEPTS ZERO LIABILITY FOR 
+ANY CONSEQUENCES, DAMAGES, OR ILLEGAL ACTS ARISING FROM THE EXECUTED CODE.
