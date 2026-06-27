@@ -20,21 +20,4 @@ Started at 0                                   | Counted to 8
 :---------------------------------------------:|:----------------------------------:
 ![](app/src/main/assets/img_1.png)             | ![Counted to 8](app/src/main/assets/img.png)
 
-## ☾ Features
-- Persistent counter (saved even after closing the app)
-- Dynamic light mode and dark mode (changes according to device mode)
-- Simple UI
-- More in the future
-
-## ⁎ Guide
-1. Download the latest APK from the *Releases* section, or from the above given link
-2. Install it
-3. Tap "Add +1" to count, tap reset to reset it to 0
-4. To switch to light mode or dark mode, change your device's mode (I have not tested this on devices below Android 12, may be stuck on either mode if you are using an old android version, manual switch will be added in the future)
-
-## ֍ Tech stack
-- Jetpack Compose (UI)
-- Android DataStore (Save count)
-
-## License
-This project is licensed under the MIT License.
+This app was developed solely by me as a learning project, you can donate to help me keep working :)
