@@ -20,4 +20,4 @@ Started at 0                                   | Counted to 8
 :---------------------------------------------:|:----------------------------------:
 ![](app/src/main/assets/img.png)             | ![Counted to 8](app/src/main/assets/img_1.png)
 
-This app was developed solely by me as a learning project, you can donate to help me keep working :)
+This app was developed solely by me as a learning project, you can donate to help me out :)
