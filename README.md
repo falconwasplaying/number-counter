@@ -2,7 +2,7 @@
 
 # Number Counter
 
-[![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=flat&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-%237F52FF.svg?style=flat&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 &nbsp;
 [![Android Studio](https://img.shields.io/badge/Android%20Studio-%233DDC84.svg?style=flat&logo=android-studio&logoColor=white)](https://developer.android.com/)
 &nbsp;
