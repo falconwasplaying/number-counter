@@ -8,10 +8,10 @@
 &nbsp;
 [![Min-SDK](https://img.shields.io/badge/23-%233DDC84?style=flat&logo=android&logoColor=FFFFFF&logoSize=auto&label=Min--SDK&labelColor=%233DDC84&color=%233DDC84)](https://en.wikipedia.org/wiki/Android_Marshmallow)
 
+&nbsp;
 Click here to get the latest version: &nbsp; [![Latest Release](https://img.shields.io/badge/Latest%20Release-v1.1.0-%237F52FF?style=flat&labelColor=%2324292e)](https://github.com/falconwasplaying/number-counter/releases/download/v1.1.0/number-counter.v1.1.0.apk)
   
-A simple Android app that counts for you. </br>
-It's my first native android app.
+A simple native Android counter app. </br>
 
 </div>
 
@@ -20,4 +20,4 @@ Started at 0                                   | Counted to 8
 :---------------------------------------------:|:----------------------------------:
 ![](app/src/main/assets/img.png)             | ![Counted to 8](app/src/main/assets/img_1.png)
 
-This app was developed solely by me as a learning project, you can donate to help me out :)
+> This app was developed solely by me, you can donate to help me out :)
