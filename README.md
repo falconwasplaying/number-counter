@@ -18,6 +18,6 @@ A simple native Android counter app. </br>
 ## ☁ Screenshots
 Started at 0                                   | Counted to 8
 :---------------------------------------------:|:----------------------------------:
-![](app/src/main/assets/img.png)             | ![Counted to 8](app/src/main/assets/img_1.png)
+![](app/src/main/assets/img.png)             | ![](app/src/main/assets/img_1.png)
 
 > This app was developed solely by me, you can donate to help me out :)
