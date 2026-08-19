@@ -1,1 +1,0 @@
-int font times_new_roman_mt_regular 0x0
